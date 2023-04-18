@@ -32,7 +32,13 @@ class SharedPreferencesDemoState extends State<ScreenHome> {
     });
   }
 
-  @override
+  Future<int> _getCounterFromPrefs() async {
+  final SharedPreferences prefs = await SharedPreferences.getInstance();
+  return prefs.getInt('counter') ?? 0;
+}
+
+
+@override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
@@ -53,7 +59,7 @@ class SharedPreferencesDemoState extends State<ScreenHome> {
                           child: Column(
                             children: [
                               Image.asset(
-                                'assets/Couilles.png',
+                                'assets/Cook.png',
                                 width: MediaQuery.of(context).size.width,
                                 fit: BoxFit.cover, // Fixes border issues
                               ),
@@ -68,4 +74,5 @@ class SharedPreferencesDemoState extends State<ScreenHome> {
               })),
     );
   }
+
 }
