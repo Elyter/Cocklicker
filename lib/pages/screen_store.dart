@@ -17,16 +17,7 @@ class ScreenStoreState extends State<ScreenStore> {
   Timer? _timer; // initialize with null
   bool _isAutoClickerOn = false;
 
-  Future<void> _incrementMultiplier(int n) async {
-    final SharedPreferences prefs = await _prefs;
-    final int multiplier = (prefs.getInt('multiplier') ?? 0) + n;
 
-    setState(() {
-      _multiplier = prefs.setInt('multiplier', multiplier).then((bool success) {
-        return multiplier;
-      });
-    });
-  }
 
   Future<void> _incrementCounter() async {
     final SharedPreferences prefs = await _prefs;
@@ -42,14 +33,14 @@ class ScreenStoreState extends State<ScreenStore> {
   void _startAutoClicker() async {
     _timer = Timer.periodic(Duration(seconds: 1), (timer) {
       setState(() {
-        _incrementCounter(); // increment the counter by 1
+        _incrementCounter(); 
       });
     });
   }
 
 void _stopAutoClicker() {
-  if (_timer != null) { // check if not null
-    _timer!.cancel(); // add the "!" to indicate that you are sure _timer is not null
+  if (_timer != null) { 
+    _timer!.cancel();
   }
 }
 
